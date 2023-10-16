@@ -32,7 +32,7 @@ def aoai_chat_model(chat):
     messages.append({"role": "user", "content": chat})
 
     # Only send the last 5 messages to the API
-    recent_messages = messages[-5:]
+    recent_messages = messages[-10:]
 
     # Send the recent messages to the OpenAI API and get the response
     response_chat = openai.ChatCompletion.create(
