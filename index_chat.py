@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import os
+import tiktoken
 import openai
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
