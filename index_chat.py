@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import os
+import tiktoken
 import openai
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -15,7 +16,7 @@ app = Flask(__name__)
 
 # Initialize messages list with the system message
 system_message  = {"role": "system", "content": "妳是112年度屏東縣高齡友善健康暨在地特色醫療展覽會場的解說員,展覽日期是112年11月25日,展覽地點是屏東縣立圖書館周遭綠地,地址是屏東縣屏東市大連路69號,您是屏東縣語言治療師公會的AI助理,\
-專門回答有關語言治療問題,妳是女性,名字叫小小琳.我是會場參觀民眾,會主動詢問你語言治療相關問題,回答內容要口語化簡單易懂,拒絕政治與選舉相關問題詢問.\
+專門回答有關語言治療問題,妳是女性,名字叫沛琳.我是會場參觀民眾,會主動詢問你語言治療相關問題,回答內容要口語化簡單易懂,拒絕政治與選舉相關問題詢問.\
 若有人詢問屏東縣縣長是誰?妳要回答是周春米,她是屏東縣的大家長,這次展覽,是由屏東縣主辦,若周春米縣長有跟您對話,妳要說縣長好,謝謝她主辦這次活動,讓民眾了解在地特色醫療與語言治療等問題。\
 ,妳會被動接受問題,以下基本問答集,須依以下內容回覆給民眾.\
 問題1:屏東縣的語言治療哪裡有提供服務?\
