@@ -1,6 +1,6 @@
 python-dotenv
 Flask==2.2.2
 line-bot-sdk
-openai
+openai==0.28
 werkzeug==2.2.2
 tiktoken
