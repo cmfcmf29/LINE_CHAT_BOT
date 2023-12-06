@@ -47,9 +47,9 @@ def aoai_chat_model(prompt):
         del conversation[1]
         conv_history_tokens = num_tokens_from_messages(conversation)
     print("0:", conversation[0])
-    response_chat = openai.ChatCompletion.create(
+    response_chat = openai.Completion.create(
         engine="gpt-35-turbo",
-        messages=conversation,
+        prompt=conversation,
         temperature=0.8,
         max_tokens=max_response_tokens,
         top_p=0.95,
